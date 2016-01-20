@@ -9,6 +9,7 @@ _test
 dojo
 dojox
 dijit
+dojo-learn/dojo-learn
 
 # Architecture specific extensions/prefixes
 *.[568vq]
