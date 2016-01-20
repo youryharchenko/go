@@ -6,6 +6,9 @@
 # Folders
 _obj
 _test
+dojo
+dojox
+dijit
 
 # Architecture specific extensions/prefixes
 *.[568vq]
