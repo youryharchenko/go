@@ -92,6 +92,47 @@ func join(list1, list2 list) list {
 	return newList(cons(car(list1()), join(newList(tail.(pair)), list2)()))
 }
 
+func fmap(proc func(interface{}) interface{}, items list) list {
+	if items() == nil {
+		return newList(nil)
+	}
+	tail := cdr(items())
+	if tail == nil {
+		return newList(cons(proc(car(items())), nil))
+	}
+	return newList(cons(proc(car(items())), fmap(proc, newList(tail.(pair)))()))
+}
+
+func fEach(proc func(interface{}), items list) {
+	if items() == nil {
+		return
+	}
+	proc(car(items()))
+	tail := cdr(items())
+	if tail != nil {
+		fEach(proc, newList(tail.(pair)))
+	}
+}
+
+func countLeaves(items list) int {
+	if items() == nil {
+		return 0
+	}
+	head := car(items())
+	tail := cdr(items())
+	l, ok := head.(list)
+	if tail == nil {
+		if ok {
+			return countLeaves(l)
+		}
+		return 1
+	}
+	if ok {
+		return countLeaves(l) + countLeaves(newList(tail.(pair)))
+	}
+	return 1 + countLeaves(newList(tail.(pair)))
+}
+
 func listToSlice(l list) []interface{} {
 	a := []interface{}{}
 	if l() == nil {
