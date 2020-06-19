@@ -172,7 +172,7 @@ func TestListMap4(t *testing.T) {
 }
 
 func TestListForEach1(t *testing.T) {
-	fEach(
+	feach(
 		func(x interface{}) {
 			fmt.Println(x)
 		},
@@ -182,7 +182,7 @@ func TestListForEach1(t *testing.T) {
 }
 
 func TestListForEach2(t *testing.T) {
-	fEach(
+	feach(
 		func(x interface{}) {
 			fmt.Println(x)
 		},
@@ -192,7 +192,7 @@ func TestListForEach2(t *testing.T) {
 }
 
 func TestListForEach3(t *testing.T) {
-	fEach(
+	feach(
 		func(x interface{}) {
 			fmt.Println(x)
 		},
@@ -202,7 +202,7 @@ func TestListForEach3(t *testing.T) {
 }
 
 func TestListForEach4(t *testing.T) {
-	fEach(
+	feach(
 		func(x interface{}) {
 			fmt.Println(x.(int) * x.(int))
 		},
@@ -238,5 +238,203 @@ func TestListCountLeaves4(t *testing.T) {
 
 func TestListCountLeaves5(t *testing.T) {
 	fmt.Println(countLeaves(makeList(1, 2, makeList(4, 5, makeList(6), makeList()), 3)))
+	t.Error("")
+}
+
+func TestListFilter1(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFilter2(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(1),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFilter3(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(2),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFilter4(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(1, 3, 5, 7),
+		),
+	)
+	t.Error("")
+}
+func TestListFilter5(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(2, 4, 6, 8),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFilter6(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 == 0
+			},
+			makeList(1, 2, 3, 4, 5, 6, 7, 8),
+		),
+	)
+	t.Error("")
+}
+func TestListFilter7(t *testing.T) {
+	fmt.Println(
+		filter(
+			func(x interface{}) bool {
+				return x.(int)%2 != 0
+			},
+			makeList(1, 2, 3, 4, 5, 6, 7, 8),
+		),
+	)
+	t.Error("")
+}
+
+func TestListAccumulate1(t *testing.T) {
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return x.(int) + y.(int)
+			},
+			0,
+			makeList(),
+		),
+	)
+	t.Error("")
+}
+
+func TestListAccumulate2(t *testing.T) {
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return x.(int) + y.(int)
+			},
+			0,
+			makeList(1),
+		),
+	)
+	t.Error("")
+}
+
+func TestListAccumulate3(t *testing.T) {
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return x.(int) + y.(int)
+			},
+			0,
+			makeList(1, 2, 3, 4, 5),
+		),
+	)
+	t.Error("")
+}
+func TestListAccumulate4(t *testing.T) {
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return x.(int) * y.(int)
+			},
+			1,
+			makeList(1, 2, 3, 4, 5),
+		),
+	)
+	t.Error("")
+}
+
+func TestListAccumulate5(t *testing.T) {
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return cons(x, y)
+			},
+			nil,
+			makeList(1, 2, 3, 4, 5),
+		),
+	)
+	t.Error("")
+}
+
+func TestListAccumulate6(t *testing.T) {
+	fmt.Println(newList(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return cons(x, y)
+			},
+			nil,
+			makeList(1, 2, 3, 4, 5),
+		).(pair),
+	))
+	t.Error("")
+}
+
+func TestListEnumerateInterval1(t *testing.T) {
+	fmt.Println(enumerateInterval(1, 5))
+	t.Error("")
+}
+
+func TestListEnumerateTree1(t *testing.T) {
+	fmt.Println(enumerateTree(makeList()))
+	t.Error("")
+}
+
+func TestListEnumerateTree2(t *testing.T) {
+	fmt.Println(enumerateTree(makeList(1, 2, makeList(4, 5, makeList(6), makeList()), 3)))
+	t.Error("")
+}
+
+func TestListAccumulate7(t *testing.T) {
+	tree := makeList(1, 2, makeList(4, 5, makeList(6), makeList()), 3)
+	fmt.Println(
+		accumulate(
+			func(x, y interface{}) interface{} {
+				return x.(int) + y.(int)
+			},
+			0,
+			fmap(
+				func(x interface{}) interface{} {
+					return x.(int) * x.(int)
+				},
+				filter(
+					func(x interface{}) bool {
+						return x.(int)%2 == 0
+					},
+					enumerateTree(tree),
+				),
+			),
+		),
+	)
 	t.Error("")
 }

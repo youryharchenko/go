@@ -103,14 +103,14 @@ func fmap(proc func(interface{}) interface{}, items list) list {
 	return newList(cons(proc(car(items())), fmap(proc, newList(tail.(pair)))()))
 }
 
-func fEach(proc func(interface{}), items list) {
+func feach(proc func(interface{}), items list) {
 	if items() == nil {
 		return
 	}
 	proc(car(items()))
 	tail := cdr(items())
 	if tail != nil {
-		fEach(proc, newList(tail.(pair)))
+		feach(proc, newList(tail.(pair)))
 	}
 }
 
@@ -131,6 +131,62 @@ func countLeaves(items list) int {
 		return countLeaves(l) + countLeaves(newList(tail.(pair)))
 	}
 	return 1 + countLeaves(newList(tail.(pair)))
+}
+
+func filter(predicate func(x interface{}) bool, sequence list) list {
+	if sequence() == nil {
+		return newList(nil)
+	}
+	head := car(sequence())
+	tail := cdr(sequence())
+	if tail == nil {
+		if predicate(head) {
+			return newList(cons(head, nil))
+		}
+		return newList(nil)
+	}
+	if predicate(head) {
+		return newList(cons(head, filter(predicate, newList(tail.(pair)))()))
+	}
+	return filter(predicate, newList(tail.(pair)))
+}
+
+func accumulate(op func(x, y interface{}) interface{}, initial interface{}, sequence list) interface{} {
+	if sequence() == nil {
+		return initial
+	}
+	head := car(sequence())
+	tail := cdr(sequence())
+	if tail == nil {
+		return op(head, initial)
+	}
+	return op(head, accumulate(op, initial, newList(tail.(pair))))
+}
+
+func enumerateInterval(low, high int) list {
+	if low > high {
+		return newList(nil)
+	}
+	return newList(cons(low, enumerateInterval(low+1, high)()))
+}
+
+func enumerateTree(tree list) list {
+	if tree() == nil {
+		return newList(nil)
+	}
+	head := car(tree())
+	tail := cdr(tree())
+	l, ok := head.(list)
+	if tail == nil {
+		if ok {
+			return enumerateTree(l)
+		}
+		return newList(cons(head, nil))
+	}
+	if ok {
+		return join(enumerateTree(l), enumerateTree(newList(tail.(pair))))
+	}
+	return newList(cons(head, enumerateTree(newList(tail.(pair)))()))
 }
 
 func listToSlice(l list) []interface{} {
