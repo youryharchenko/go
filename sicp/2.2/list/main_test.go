@@ -438,3 +438,116 @@ func TestListAccumulate7(t *testing.T) {
 	)
 	t.Error("")
 }
+func TestListFoldLeft1(t *testing.T) {
+	fmt.Println(
+		foldLeft(
+			func(x, y interface{}) interface{} {
+				return x.(int) * y.(int)
+			},
+			1,
+			makeList(1, 2, 3, 4, 5),
+		),
+	)
+	t.Error("")
+}
+func TestListFoldLeft2(t *testing.T) {
+	fmt.Println(
+		foldLeft(
+			func(x, y interface{}) interface{} {
+				return x.(int) * y.(int)
+			},
+			1,
+			makeList(),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFoldLeft3(t *testing.T) {
+	fmt.Println(
+		foldLeft(
+			func(x, y interface{}) interface{} {
+				return x.(int) * y.(int)
+			},
+			1,
+			makeList(2),
+		),
+	)
+	t.Error("")
+}
+
+func TestListFoldRight1(t *testing.T) {
+	tree := makeList(1, 2, makeList(4, 5, makeList(6), makeList()), 3)
+	fmt.Println(
+		foldRight(
+			func(x, y interface{}) interface{} {
+				return x.(int) + y.(int)
+			},
+			0,
+			fmap(
+				func(x interface{}) interface{} {
+					return x.(int) * x.(int)
+				},
+				filter(
+					func(x interface{}) bool {
+						return x.(int)%2 == 0
+					},
+					enumerateTree(tree),
+				),
+			),
+		),
+	)
+	t.Error("")
+}
+func TestListFlatMap1(t *testing.T) {
+	n := 6
+	fmt.Println(
+		flatMap(
+			func(i interface{}) interface{} {
+				return fmap(
+					func(j interface{}) interface{} {
+						return makeList(i, j)
+					},
+					enumerateInterval(1, i.(int)-1),
+				)
+			},
+			enumerateInterval(1, n),
+		),
+	)
+	t.Error("")
+}
+func TestListFlatMap2(t *testing.T) {
+	n := 12
+	fmt.Println(
+		fmap(
+			func(p interface{}) interface{} {
+				head := car(p.(list)())
+				tail := cdr(p.(list)())
+				first := head.(int)
+				second := car(tail.(pair)).(int)
+				return makeList(first, second, first+second)
+			},
+			filter(
+				func(p interface{}) bool {
+					head := car(p.(list)())
+					tail := cdr(p.(list)())
+					first := head.(int)
+					second := car(tail.(pair)).(int)
+					return prime(first + second)
+				},
+				flatMap(
+					func(i interface{}) interface{} {
+						return fmap(
+							func(j interface{}) interface{} {
+								return makeList(i, j)
+							},
+							enumerateInterval(1, i.(int)-1),
+						)
+					},
+					enumerateInterval(1, n),
+				),
+			),
+		),
+	)
+	t.Error("")
+}
