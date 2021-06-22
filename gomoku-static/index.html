@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta httpequiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content>
+<meta name="description" content="Gomoku game">
+<meta name="keywords" content>
+<meta name="theme-color" content="#2d2c2c">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+<meta content="http://127.0.0.1:35629/" property="og:url">
+<meta property="og:title" content>
+<meta property="og:description" content="Gomoku game">
+<meta property="og:type" content="website">
+<meta property="og:image" content>
+<title>
+
+</title>
+<link rel="icon" type="image/png" href="static/img/Gomoku.png">
+<link rel="apple-touch-icon" href="static/img/Gomoku.png">
+<link rel="manifest" href="/gomoku/manifest.webmanifest">
+<link type="text/css" rel="stylesheet" href="/gomoku/app.css">
+<script src="/gomoku/wasm_exec.js" defer></script>
+<script defer src="/gomoku/app.js"></script>
+</head>
+<body>
+<div>
+<div id="app-pre-render">
+<div>
+<div style="display:flex;justify-content:center;">
+<h1>
+Gomoku game
+</h1>
+</div>
+<div style="display:flex;justify-content:center;">
+<table id="desk" style="border-spacing:0px 0px;display:block;border-bottom:0px;border-spacing:0;margin:0px;border:0px;padding:0px;">
+<div style="display:flex;justify-content:center;">
+<button>
+New: Black
+</button>
+<button>
+New: White
+</button>
+</div>
+<tr id="r01" style="height:40px;display:block;">
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r01c01">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r01c02">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r01c08">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r01c09">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r01c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r01c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r01c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r01c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r01c15">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r02" style="height:40px;display:block;">
+<td id="r02c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r02c02">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r02c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r02c14">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r02c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r03" style="height:40px;display:block;">
+<td id="r03c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r03c02">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r03c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r03c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r03c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r04" style="height:40px;display:block;">
+<td id="r04c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r04c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r04c06">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r04c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r04c11">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r04c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r04c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r04c15">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r05" style="height:40px;display:block;">
+<td id="r05c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r05c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r05c06">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r05c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r05c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r05c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r06" style="height:40px;display:block;">
+<td id="r06c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r06c04">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r06c08">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r06c11">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r06c13">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r06c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r07" style="height:40px;display:block;">
+<td id="r07c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r07c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r07c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r07c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r07c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r07c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r08" style="height:40px;display:block;">
+<td id="r08c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r08c05">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r08c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r08c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr style="height:40px;display:block;" id="r09">
+<td id="r09c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r09c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r09c11">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r09c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r09c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r10" style="height:40px;display:block;">
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r10c01">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r10c09">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r10c13">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r10c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r11" style="height:40px;display:block;">
+<td id="r11c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r11c07">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r11c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r11c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r11c11">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r11c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r11c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr style="height:40px;display:block;" id="r12">
+<td id="r12c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r12c05">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r12c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r12c08">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r12c10">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r12c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r12c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r12c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r12c14">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r12c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r13" style="height:40px;display:block;">
+<td id="r13c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r13c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r13c04">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r13c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+</tr>
+<tr id="r14" style="height:40px;display:block;">
+<td id="r14c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r14c02">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td style="height:40px;width:40px;margin:0px;border:0px;padding:0px;" id="r14c06">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r14c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r14c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r14c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+<tr id="r15" style="height:40px;display:block;">
+<td id="r15c01" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c02" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r15c03" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c04" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r15c05" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c06" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c07" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c08" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c09" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c10" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r15c11" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r15c12" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img style="height:40px;width:40px;" src="static/img/Empty.png">
+</td>
+<td id="r15c13" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c14" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+<td id="r15c15" style="height:40px;width:40px;margin:0px;border:0px;padding:0px;">
+<img src="static/img/Empty.png" style="height:40px;width:40px;">
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div id="app-wasm-loader" class="goapp-app-info">
+<img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="static/img/Gomoku.png">
+<p class="goapp-label" id="app-wasm-loader-label">
+Loading
+</p>
+</div>
+</div>
+<div id="app-end"></div>
+</body>
+</html>
